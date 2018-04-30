@@ -1,0 +1,6 @@
+framework module Pods_ACHttpManager_Tests {
+  umbrella header "Pods-ACHttpManager_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

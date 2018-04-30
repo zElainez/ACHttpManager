@@ -1,0 +1,30 @@
+{
+  "name": "ACHttpManager",
+  "version": "0.1.0",
+  "summary": "A short description of ACHttpManager.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/zElainez/ACHttpManager",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "zElainez": "elaine_zhao@acmedcare.com"
+  },
+  "source": {
+    "git": "https://github.com/zElainez/ACHttpManager.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "ACHttpManager/Classes/**/*",
+  "dependencies": {
+    "AFNetworking": [
+      "~> 3.1.0"
+    ],
+    "YYCache": [
+
+    ]
+  }
+}
