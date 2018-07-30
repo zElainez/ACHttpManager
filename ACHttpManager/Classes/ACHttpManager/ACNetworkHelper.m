@@ -117,6 +117,39 @@ static AFHTTPSessionManager *_sessionManager;
 }
 
 
+#pragma mark - DELETE请求
++(NSURLSessionTask *)DELETE:(NSString *)URL
+             isAuthenticate:(BOOL)isAuth
+                  userToken:(NSString*)token
+                 parameters:(id)parameters
+                     success:(ACHttpRequestSuccess)success
+                      failure:(ACHttpRequestFailed)failure {
+    
+      if(token){
+          [self setValue:token forHTTPHeaderField:@"Authorization"];
+      }
+      
+
+      
+      NSURLSessionTask *sessionTask=[_sessionManager DELETE:URL parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (_isOpenLog) {ACLog(@"responseObject = %@",[self jsonToString:responseObject]);}
+            [[self allSessionTask] removeObject:task];
+            success ? success(responseObject) : nil;
+          
+      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+          if (_isOpenLog) {ACLog(@"error = %@",error);}
+          [[self allSessionTask] removeObject:task];
+          failure ? failure(error) : nil;
+      }];
+      
+      // 添加sessionTask到数组
+      sessionTask ? [[self allSessionTask] addObject:sessionTask] : nil ;
+      
+      return sessionTask;
+}
+
+
+
 #pragma mark - PUT请求自动缓存
 + (NSURLSessionTask *)PUT:(NSString *)URL
                 userToken:(NSString *)token
